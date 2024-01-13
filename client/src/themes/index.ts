@@ -5,17 +5,17 @@ export const lightColors = {
   secondary: '#FFC107',
   background: '#FFFFFF',
   paper: '#FFFFFF',
-  textPrimary: '#212121',
+  textPrimary: '#000000',
   textSecondary: '#757575',
-  iconColor: '#FFFFFF',
+  iconColor: '#000000',
   linkColor: '#1976D2',
 };
 
 export const darkColors = {
   primary: '#0D47A1',
   secondary: '#FFA000',
-  background: '#212121',
-  paper: '#333333 ',
+  background: '#0E142C',
+  paper: '#1D2645 ',
   textPrimary: '#FFFFFF',
   textSecondary: '#BDBDBD',
   iconColor: '#FFFFFF',
