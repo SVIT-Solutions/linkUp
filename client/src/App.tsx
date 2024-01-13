@@ -50,7 +50,7 @@ const App: FC = () => {
       <ThemeProvider theme={Themes[appThemeId]}>
         <CssBaseline />
         <Navbar />
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <AppRouter />
         </Container>
       </ThemeProvider>

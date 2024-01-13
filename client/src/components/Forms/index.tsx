@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
+import { makeStyles } from '@material-ui/styles';
 
 interface FormProps {
   children: React.ReactNode;
@@ -10,6 +11,12 @@ interface FormProps {
 }
 
 const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
+  const useStyles = makeStyles({
+    wrapper: { padding: '14px', opacity: isLoading ? 0.5 : 1 },
+  });
+
+  const classes = useStyles();
+
   return (
     <form
       onSubmit={onSubmit}
@@ -20,7 +27,7 @@ const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
       }}
     >
       {isLoading === true && <Loader style={{ position: 'absolute' }} />}
-      <Card style={{ ...style, opacity: isLoading ? 0.5 : 1, padding: '8px' }}>
+      <Card className={classes.wrapper} style={style}>
         {children}
       </Card>
     </form>

@@ -1,25 +1,25 @@
 import { createTheme } from '@material-ui/core/styles';
 
 export const lightColors = {
-  primary: '#2196F3',
-  secondary: '#FFC107',
+  primary: '#00A3FF',
+  secondary: '#00A3FF',
   background: '#FFFFFF',
   paper: '#FFFFFF',
   textPrimary: '#000000',
   textSecondary: '#757575',
   iconColor: '#000000',
-  linkColor: '#1976D2',
+  linkColor: '#00A3FF',
 };
 
 export const darkColors = {
-  primary: '#0D47A1',
-  secondary: '#FFA000',
+  primary: '#1976D2',
+  secondary: '#0386D5',
   background: '#0E142C',
   paper: '#1D2645 ',
   textPrimary: '#FFFFFF',
   textSecondary: '#BDBDBD',
   iconColor: '#FFFFFF',
-  linkColor: '#1976D2',
+  linkColor: '#0386D5',
 };
 
 const createCustomTheme = (colors: any) => {
