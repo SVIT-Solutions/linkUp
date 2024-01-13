@@ -1,96 +1,87 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core/styles';
 
 export const lightColors = {
-  primary: '#2196F3',
-  secondary: '#FFC107',
+  primary: '#00A3FF',
+  secondary: '#00A3FF',
   background: '#FFFFFF',
   paper: '#FFFFFF',
-  textPrimary: '#212121',
+  textPrimary: '#000000',
   textSecondary: '#757575',
-  iconColor: '#FFFFFF',
-  linkColor: '#1976D2',
+  primaryButtonTextColor: '#FFFFFF',
+  buttonTextColor: '#00A3FF',
+  iconColor: '#00A3FF',
+  linkColor: '#00A3FF',
 };
 
 export const darkColors = {
-  primary: '#0D47A1',
-  secondary: '#FFA000',
-  background: '#212121',
-  paper: '#333333 ',
+  primary: '#1976D2',
+  secondary: '#0386D5',
+  background: '#0E142C',
+  paper: '#1D2645 ',
   textPrimary: '#FFFFFF',
   textSecondary: '#BDBDBD',
+  primaryButtonTextColor: '#FFFFFF',
+  buttonTextColor: '#00A3FF',
   iconColor: '#FFFFFF',
-  linkColor: '#1976D2',
+  linkColor: '#0386D5',
 };
 
-const lightTheme = createTheme({
-  palette: {
-    primary: {
-      main: lightColors.primary,
+const createCustomTheme = (colors: any) => {
+  return createTheme({
+    typography: {
+      fontFamily: 'CourierPrime-Regular, sans-serif',
     },
-    secondary: {
-      main: lightColors.secondary,
+    palette: {
+      primary: {
+        main: colors.primary,
+      },
+      secondary: {
+        main: colors.secondary,
+      },
+      background: {
+        default: colors.background,
+        paper: colors.paper,
+      },
+      text: {
+        primary: colors.textPrimary,
+        secondary: colors.textSecondary,
+      },
     },
-    background: {
-      default: lightColors.background,
-      paper: lightColors.paper,
-    },
-    text: {
-      primary: lightColors.textPrimary,
-      secondary: lightColors.textSecondary,
-    },
-  },
-  components: {
-    MuiIconButton: {
-      styleOverrides: {
+    overrides: {
+      MuiButton: {
         root: {
-          color: lightColors.iconColor,
+          color: colors.buttonTextColor,
+        },
+        containedPrimary: {
+          color: colors.primaryButtonTextColor,
+        },
+      },
+      MuiIconButton: {
+        root: {
+          color: colors.iconColor,
+        },
+      },
+      MuiLink: {
+        root: {
+          color: colors.linkColor,
+        },
+      },
+      MuiTypography: {
+        colorTextSecondary: {
+          color: colors.textSecondary,
+        },
+      },
+      MuiAppBar: {
+        colorPrimary: {
+          color: colors.textPrimary,
         },
       },
     },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: lightColors.linkColor,
-        },
-      },
-    },
-  },
-});
+  });
+};
 
-export const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: darkColors.primary,
-    },
-    secondary: {
-      main: darkColors.secondary,
-    },
-    background: {
-      default: darkColors.background,
-      paper: darkColors.paper,
-    },
-    text: {
-      primary: darkColors.textPrimary,
-      secondary: darkColors.textSecondary,
-    },
-  },
-  components: {
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          color: darkColors.iconColor,
-        },
-      },
-    },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: darkColors.linkColor,
-        },
-      },
-    },
-  },
-});
+export const lightTheme = createCustomTheme(lightColors);
+export const darkTheme = createCustomTheme(darkColors);
 
 export enum ThemesIds {
   LIGHT = 0,

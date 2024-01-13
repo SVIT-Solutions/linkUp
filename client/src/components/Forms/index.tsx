@@ -1,15 +1,22 @@
-import React, { FC } from 'react';
-import { Box, Card } from '@mui/material';
+import React, { CSSProperties, FC } from 'react';
+import { Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
+import { makeStyles } from '@material-ui/styles';
 
 interface FormProps {
   children: React.ReactNode;
   isLoading: boolean;
-  style?: object;
+  style?: CSSProperties;
   onSubmit: () => void;
 }
 
 const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
+  const useStyles = makeStyles({
+    wrapper: { padding: '14px', opacity: isLoading ? 0.5 : 1 },
+  });
+
+  const classes = useStyles();
+
   return (
     <form
       onSubmit={onSubmit}
@@ -20,7 +27,7 @@ const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
       }}
     >
       {isLoading === true && <Loader style={{ position: 'absolute' }} />}
-      <Card sx={{ p: 2 }} style={{ ...style, opacity: isLoading ? 0.5 : 1 }}>
+      <Card className={classes.wrapper} style={style}>
         {children}
       </Card>
     </form>

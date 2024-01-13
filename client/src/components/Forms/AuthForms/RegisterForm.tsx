@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
   Button,
   IconButton,
@@ -8,7 +8,7 @@ import {
   Link,
   TextField,
   Typography,
-} from '@mui/material';
+} from '@material-ui/core';
 import { AuthContext } from 'context/AuthContext';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,7 @@ import { RouteNames } from 'router';
 import Form from 'components/Forms';
 import { REGISTER } from 'api/mutations';
 import { useTranslation } from 'react-i18next';
+import RootButton from 'components/UI/Buttons/RootButton';
 
 interface IValidationError {
   field: string;
@@ -164,13 +165,16 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <RootButton type="submit" variant="contained" color="primary" fullWidth>
         {t('singup')}
-      </Button>
+      </RootButton>
 
-      <Typography sx={{ mt: 1, textAlign: 'center' }} variant="body1">
+      <Typography
+        style={{ marginTop: '8px', textAlign: 'center' }}
+        variant="body1"
+      >
         {t('already_have_an_account')}?{' '}
-        <Link sx={{ cursor: 'pointer' }} onClick={toLoginClickHandler}>
+        <Link style={{ cursor: 'pointer' }} onClick={toLoginClickHandler}>
           {t('login')}
         </Link>
       </Typography>

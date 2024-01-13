@@ -1,9 +1,8 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import {
   AppBar,
   Avatar,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
@@ -11,19 +10,30 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from '@mui/material';
+} from '@material-ui/core';
 import { AuthContext } from 'context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RouteNames } from 'router';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
-import { ThemesIds } from 'themes';
 import AuthModal, {
   AuthModalNames,
 } from 'components/Modals/AuthModals/AuthModal';
 import LanguageSelector from 'components/UI/LanguageSelector';
+import { makeStyles } from '@material-ui/styles';
+import RootButton from 'components/UI/Buttons/RootButton';
+import ColorThemeSwitchButton from 'components/UI/Buttons/ColorThemeSwitchButton';
+import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
+
+const useStyles = makeStyles(() => ({
+  appBar: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+  },
+}));
 
 const Navbar: FC = () => {
+  const classes = useStyles();
+
   const { t } = useTranslation();
   const router = useNavigate();
   const { pathname } = useLocation();
@@ -76,15 +86,6 @@ const Navbar: FC = () => {
 
   const closeModal = () => setModalTypeOpen(null);
 
-  const toggleTheme = () => {
-    const newThemeId =
-      authContext?.appThemeId === ThemesIds.LIGHT
-        ? ThemesIds.DARK
-        : ThemesIds.LIGHT;
-    authContext?.setAppThemeId(newThemeId);
-    localStorage.setItem('themeId', String(newThemeId));
-  };
-
   const settings = [
     { title: t('account'), onClick: () => {} },
     { title: t('settings'), onClick: () => {} },
@@ -93,45 +94,28 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
+      <AppBar position="static" className={classes.appBar}>
+        <Container maxWidth="lg">
           <Toolbar
             disableGutters
-            sx={{ d: 'flex', justifyContent: 'space-between' }}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
           >
-            <Box>
-              <Typography
-                variant="h6"
-                noWrap
-                sx={{
-                  cursor: 'pointer',
-                }}
-                onClick={logoClickHandler}
-              >
-                Image Uploader
-              </Typography>
-            </Box>
-
+            <LinkUpLogo onClick={logoClickHandler} />
             <Box style={{ display: 'flex', alignItems: 'center' }}>
-              <LanguageSelector sx={{ mr: 3 }} />
-              <Box sx={{ ml: 1, mr: 2 }}>
-                <IconButton onClick={toggleTheme} color="inherit">
-                  {authContext?.appThemeId === ThemesIds.DARK ? (
-                    <Brightness7 />
-                  ) : (
-                    <Brightness4 />
-                  )}
-                </IconButton>
-              </Box>
+              <LanguageSelector style={{ marginRight: '20px' }} />
+              <ColorThemeSwitchButton style={{ marginRight: '20px' }} />
               {authContext?.isAuth ? (
                 <Box>
                   <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      style={{ padding: 0, marginLeft: '6px' }}
+                    >
                       <Avatar alt="Remy Sharp" />
                     </IconButton>
                   </Tooltip>
                   <Menu
-                    sx={{ mt: '45px' }}
+                    style={{ marginTop: '45px' }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
@@ -151,7 +135,7 @@ const Navbar: FC = () => {
                         key={setting.title}
                         onClick={handleClickUserMenuItem(setting.onClick)}
                       >
-                        <Typography textAlign="center">
+                        <Typography style={{ textAlign: 'center' }}>
                           {setting.title}
                         </Typography>
                       </MenuItem>
@@ -160,16 +144,19 @@ const Navbar: FC = () => {
                 </Box>
               ) : (
                 <Box>
-                  <Button
+                  <RootButton
                     onClick={loginCLickHandler}
-                    color="inherit"
-                    sx={{ mr: '8px' }}
+                    style={{ marginRight: '8px' }}
                   >
                     {t('login')}
-                  </Button>
-                  <Button onClick={registerCLickHandler} color="inherit">
+                  </RootButton>
+                  <RootButton
+                    onClick={registerCLickHandler}
+                    variant="contained"
+                    color="primary"
+                  >
                     {t('singup')}
-                  </Button>
+                  </RootButton>
                 </Box>
               )}{' '}
             </Box>

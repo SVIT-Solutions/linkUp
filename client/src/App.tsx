@@ -4,11 +4,12 @@ import { AuthContext } from 'context/AuthContext';
 import { IUser } from 'models/IUser';
 import Navbar from 'components/Navbar';
 import { Themes, ThemesIds } from 'themes';
-import { Container, CssBaseline, ThemeProvider } from '@mui/material';
 import { VERIFY_TOKEN } from 'api/mutations';
 import { useMutation } from '@apollo/client';
 import { getWebsiteSettings } from 'utils';
 import { useTranslation } from 'react-i18next';
+import { ThemeProvider } from '@material-ui/styles';
+import { Container, CssBaseline } from '@material-ui/core';
 
 const App: FC = () => {
   const { i18n } = useTranslation();
@@ -49,7 +50,7 @@ const App: FC = () => {
       <ThemeProvider theme={Themes[appThemeId]}>
         <CssBaseline />
         <Navbar />
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <AppRouter />
         </Container>
       </ThemeProvider>

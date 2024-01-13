@@ -1,14 +1,21 @@
 import React, { FC, useState } from 'react';
-import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { languages } from 'languages';
 import { useTranslation } from 'react-i18next';
+import { makeStyles } from '@material-ui/styles';
 
 interface LanguageSelectorProps {
-  sx?: object;
+  style?: React.CSSProperties;
 }
 
-const LanguageSelector: FC<LanguageSelectorProps> = ({ sx }) => {
-  const { t, i18n } = useTranslation();
+const useStyles = makeStyles({
+  wrapper: { display: 'flex', alignItems: 'center' },
+});
+
+const LanguageSelector: FC<LanguageSelectorProps> = ({ style }) => {
+  const classes = useStyles();
+
+  const { i18n } = useTranslation();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -28,11 +35,11 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ sx }) => {
   };
 
   return (
-    <Box sx={sx} style={{ display: 'flex', alignItems: 'center' }}>
+    <Box className={classes.wrapper} style={style}>
       <IconButton
         onClick={handleClick}
         color="secondary"
-        sx={{ fontSize: '16px' }}
+        style={{ fontSize: '16px' }}
       >
         {i18n.language.toUpperCase()}
       </IconButton>

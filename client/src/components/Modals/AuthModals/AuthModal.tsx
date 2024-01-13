@@ -16,12 +16,14 @@ interface AuthModalProps {
 const AuthModal: FC<AuthModalProps> = ({ modalTypeOpen, onClose }) => {
   return (
     <Modal onClose={onClose} open={modalTypeOpen !== null}>
-      {modalTypeOpen === AuthModalNames.LOGIN && (
-        <LoginForm closeModal={onClose} />
-      )}
-      {modalTypeOpen === AuthModalNames.REGISTER && (
-        <RegisterForm closeModal={onClose} />
-      )}
+      <>
+        {modalTypeOpen === AuthModalNames.LOGIN && (
+          <LoginForm closeModal={onClose} />
+        )}
+        {modalTypeOpen === AuthModalNames.REGISTER && (
+          <RegisterForm closeModal={onClose} />
+        )}
+      </>
     </Modal>
   );
 };

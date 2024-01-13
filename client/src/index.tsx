@@ -9,6 +9,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import App from './App';
+import './fonts.css';
 import './index.css';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'languages';
