@@ -23,6 +23,7 @@ import AuthModal, {
 } from 'components/Modals/AuthModals/AuthModal';
 import LanguageSelector from 'components/UI/LanguageSelector';
 import { makeStyles } from '@material-ui/styles';
+import RootButton from 'components/UI/Buttons/RootButton';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -173,16 +174,16 @@ const Navbar: FC = () => {
                 </Box>
               ) : (
                 <Box>
-                  <Button
+                  <RootButton
                     onClick={loginCLickHandler}
                     color="inherit"
                     style={{ marginRight: '8px' }}
                   >
                     {t('login')}
-                  </Button>
-                  <Button onClick={registerCLickHandler} color="inherit">
+                  </RootButton>
+                  <RootButton onClick={registerCLickHandler} color="inherit">
                     {t('singup')}
-                  </Button>
+                  </RootButton>
                 </Box>
               )}{' '}
             </Box>

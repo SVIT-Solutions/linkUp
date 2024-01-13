@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { RouteNames } from 'router';
 import Form from 'components/Forms';
 import { useTranslation } from 'react-i18next';
+import RootButton from 'components/UI/Buttons/RootButton';
 
 interface LoginFormInput {
   username: string;
@@ -110,9 +111,9 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <RootButton type="submit" variant="contained" color="primary" fullWidth>
         {t('login')}
-      </Button>
+      </RootButton>
 
       <Typography
         style={{ marginTop: '8px', textAlign: 'center' }}

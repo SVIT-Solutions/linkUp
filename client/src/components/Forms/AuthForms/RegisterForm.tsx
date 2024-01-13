@@ -16,6 +16,7 @@ import { RouteNames } from 'router';
 import Form from 'components/Forms';
 import { REGISTER } from 'api/mutations';
 import { useTranslation } from 'react-i18next';
+import RootButton from 'components/UI/Buttons/RootButton';
 
 interface IValidationError {
   field: string;
@@ -164,9 +165,9 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <RootButton type="submit" variant="contained" color="primary" fullWidth>
         {t('singup')}
-      </Button>
+      </RootButton>
 
       <Typography
         style={{ marginTop: '8px', textAlign: 'center' }}
