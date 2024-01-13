@@ -3,7 +3,6 @@ import {
   AppBar,
   Avatar,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
@@ -17,7 +16,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RouteNames } from 'router';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
-import { ThemesIds } from 'themes';
+import { ThemeColors, ThemesIds } from 'themes';
 import AuthModal, {
   AuthModalNames,
 } from 'components/Modals/AuthModals/AuthModal';
@@ -29,6 +28,10 @@ const useStyles = makeStyles(() => ({
   appBar: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
+  },
+  logo: {
+    cursor: 'pointer',
+    display: 'flex',
   },
 }));
 
@@ -111,20 +114,19 @@ const Navbar: FC = () => {
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <Box>
-              <Typography
-                variant="h6"
-                noWrap
-                style={{
-                  cursor: 'pointer',
-                }}
-                onClick={logoClickHandler}
-              >
-                Image Uploader
-              </Typography>
+              <Box className={classes.logo} onClick={logoClickHandler}>
+                <Typography variant="h5" color="secondary">
+                  /
+                </Typography>
+                <Typography variant="h5">Link</Typography>
+                <Typography variant="h5" color="secondary">
+                  Up
+                </Typography>
+              </Box>
             </Box>
 
             <Box style={{ display: 'flex', alignItems: 'center' }}>
-              <LanguageSelector sx={{ mr: 3 }} />
+              <LanguageSelector sx={{ mr: 2 }} />
               <Box sx={{ ml: 1, mr: 2 }}>
                 <IconButton onClick={toggleTheme} color="inherit">
                   {authContext?.appThemeId === ThemesIds.DARK ? (
@@ -176,12 +178,15 @@ const Navbar: FC = () => {
                 <Box>
                   <RootButton
                     onClick={loginCLickHandler}
-                    color="inherit"
                     style={{ marginRight: '8px' }}
                   >
                     {t('login')}
                   </RootButton>
-                  <RootButton onClick={registerCLickHandler} color="inherit">
+                  <RootButton
+                    onClick={registerCLickHandler}
+                    variant="contained"
+                    color="primary"
+                  >
                     {t('singup')}
                   </RootButton>
                 </Box>

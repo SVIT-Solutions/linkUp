@@ -8,7 +8,7 @@ interface RootButtonProps extends ButtonProps {
 }
 
 const useStyles = makeStyles({
-  root: { textTransform: 'capitalize' },
+  root: { textTransform: 'capitalize', padding: '5px 19px' },
 });
 
 const RootButton: React.FC<RootButtonProps> = ({

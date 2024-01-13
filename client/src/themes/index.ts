@@ -7,6 +7,7 @@ export const lightColors = {
   paper: '#FFFFFF',
   textPrimary: '#000000',
   textSecondary: '#757575',
+  primaryButtonTextColor: '#FFFFFF',
   iconColor: '#000000',
   linkColor: '#00A3FF',
 };
@@ -18,6 +19,7 @@ export const darkColors = {
   paper: '#1D2645 ',
   textPrimary: '#FFFFFF',
   textSecondary: '#BDBDBD',
+  primaryButtonTextColor: '#FFFFFF',
   iconColor: '#FFFFFF',
   linkColor: '#0386D5',
 };
@@ -41,6 +43,11 @@ const createCustomTheme = (colors: any) => {
       },
     },
     overrides: {
+      MuiButton: {
+        containedPrimary: {
+          color: colors.primaryButtonTextColor,
+        },
+      },
       MuiIconButton: {
         root: {
           color: colors.iconColor,
