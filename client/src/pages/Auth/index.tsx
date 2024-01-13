@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box } from '@material-ui/core';
 import LoginForm from 'components/Forms/AuthForms/LoginForm';
 import RegisterForm from 'components/Forms/AuthForms/RegisterForm';
 import { useLocation } from 'react-router-dom';

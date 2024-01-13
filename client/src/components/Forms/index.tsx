@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Card } from '@mui/material';
+import { Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
 
 interface FormProps {
@@ -20,7 +20,7 @@ const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
       }}
     >
       {isLoading === true && <Loader style={{ position: 'absolute' }} />}
-      <Card sx={{ p: 2 }} style={{ ...style, opacity: isLoading ? 0.5 : 1 }}>
+      <Card style={{ ...style, opacity: isLoading ? 0.5 : 1, padding: '8px' }}>
         {children}
       </Card>
     </form>

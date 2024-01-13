@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import {
   AppBar,
   Avatar,
@@ -11,19 +11,29 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from '@mui/material';
+} from '@material-ui/core';
 import { AuthContext } from 'context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RouteNames } from 'router';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { Brightness4, Brightness7 } from '@material-ui/icons';
 import { ThemesIds } from 'themes';
 import AuthModal, {
   AuthModalNames,
 } from 'components/Modals/AuthModals/AuthModal';
 import LanguageSelector from 'components/UI/LanguageSelector';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles(() => ({
+  appBar: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+  },
+}));
 
 const Navbar: FC = () => {
+  const classes = useStyles();
+
   const { t } = useTranslation();
   const router = useNavigate();
   const { pathname } = useLocation();
@@ -93,17 +103,17 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
+      <AppBar position="static" className={classes.appBar}>
+        <Container maxWidth="lg">
           <Toolbar
             disableGutters
-            sx={{ d: 'flex', justifyContent: 'space-between' }}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <Box>
               <Typography
                 variant="h6"
                 noWrap
-                sx={{
+                style={{
                   cursor: 'pointer',
                 }}
                 onClick={logoClickHandler}
@@ -126,12 +136,15 @@ const Navbar: FC = () => {
               {authContext?.isAuth ? (
                 <Box>
                   <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      style={{ padding: 0 }}
+                    >
                       <Avatar alt="Remy Sharp" />
                     </IconButton>
                   </Tooltip>
                   <Menu
-                    sx={{ mt: '45px' }}
+                    style={{ marginTop: '45px' }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
@@ -151,7 +164,7 @@ const Navbar: FC = () => {
                         key={setting.title}
                         onClick={handleClickUserMenuItem(setting.onClick)}
                       >
-                        <Typography textAlign="center">
+                        <Typography style={{ textAlign: 'center' }}>
                           {setting.title}
                         </Typography>
                       </MenuItem>
@@ -163,7 +176,7 @@ const Navbar: FC = () => {
                   <Button
                     onClick={loginCLickHandler}
                     color="inherit"
-                    sx={{ mr: '8px' }}
+                    style={{ marginRight: '8px' }}
                   >
                     {t('login')}
                   </Button>

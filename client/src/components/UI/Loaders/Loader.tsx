@@ -1,5 +1,5 @@
 import Reasct, { FC } from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress } from '@material-ui/core';
 
 interface LoaderProps {
   style: object;

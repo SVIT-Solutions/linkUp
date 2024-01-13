@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { languages } from 'languages';
 import { useTranslation } from 'react-i18next';
 
@@ -32,7 +32,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ sx }) => {
       <IconButton
         onClick={handleClick}
         color="secondary"
-        sx={{ fontSize: '16px' }}
+        style={{ fontSize: '16px' }}
       >
         {i18n.language.toUpperCase()}
       </IconButton>

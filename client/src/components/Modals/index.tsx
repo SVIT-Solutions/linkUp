@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Modal as MuiModal } from '@mui/material';
+import { Box, Modal as MuiModal } from '@material-ui/core';
 
 interface ModalProps {
   open: boolean;
