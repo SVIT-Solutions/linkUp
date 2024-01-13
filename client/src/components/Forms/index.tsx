@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import { Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
 import { makeStyles } from '@material-ui/styles';
@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 interface FormProps {
   children: React.ReactNode;
   isLoading: boolean;
-  style?: object;
+  style?: CSSProperties;
   onSubmit: () => void;
 }
 

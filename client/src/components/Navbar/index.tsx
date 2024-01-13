@@ -15,23 +15,19 @@ import { AuthContext } from 'context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RouteNames } from 'router';
-import { Brightness4, Brightness7 } from '@material-ui/icons';
-import { ThemeColors, ThemesIds } from 'themes';
 import AuthModal, {
   AuthModalNames,
 } from 'components/Modals/AuthModals/AuthModal';
 import LanguageSelector from 'components/UI/LanguageSelector';
 import { makeStyles } from '@material-ui/styles';
 import RootButton from 'components/UI/Buttons/RootButton';
+import ColorThemeSwitchButton from 'components/UI/Buttons/ColorThemeSwitchButton';
+import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 const useStyles = makeStyles(() => ({
   appBar: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
-  },
-  logo: {
-    cursor: 'pointer',
-    display: 'flex',
   },
 }));
 
@@ -90,15 +86,6 @@ const Navbar: FC = () => {
 
   const closeModal = () => setModalTypeOpen(null);
 
-  const toggleTheme = () => {
-    const newThemeId =
-      authContext?.appThemeId === ThemesIds.LIGHT
-        ? ThemesIds.DARK
-        : ThemesIds.LIGHT;
-    authContext?.setAppThemeId(newThemeId);
-    localStorage.setItem('themeId', String(newThemeId));
-  };
-
   const settings = [
     { title: t('account'), onClick: () => {} },
     { title: t('settings'), onClick: () => {} },
@@ -113,29 +100,11 @@ const Navbar: FC = () => {
             disableGutters
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
-            <Box>
-              <Box className={classes.logo} onClick={logoClickHandler}>
-                <Typography variant="h5" color="secondary">
-                  /
-                </Typography>
-                <Typography variant="h5">Link</Typography>
-                <Typography variant="h5" color="secondary">
-                  Up
-                </Typography>
-              </Box>
-            </Box>
+            <LinkUpLogo onClick={logoClickHandler} />
 
             <Box style={{ display: 'flex', alignItems: 'center' }}>
               <LanguageSelector sx={{ mr: 2 }} />
-              <Box sx={{ ml: 1, mr: 2 }}>
-                <IconButton onClick={toggleTheme} color="inherit">
-                  {authContext?.appThemeId === ThemesIds.DARK ? (
-                    <Brightness7 />
-                  ) : (
-                    <Brightness4 />
-                  )}
-                </IconButton>
-              </Box>
+              <ColorThemeSwitchButton style={{ marginRight: '20px' }} />
               {authContext?.isAuth ? (
                 <Box>
                   <Tooltip title="Open settings">
