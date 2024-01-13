@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+*.db
+*.sqlite3
+*.log
+mysql_data
+
+.env
+
+client/node_modules
+client/yarn.lock
+client/build

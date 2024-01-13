@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  server:
+    container_name: server-linkUp
+    build: ./server
+    ports:
+      - "$SERVER_PORT:$SERVER_PORT"
+    command: bash -c "python manage.py runserver 0.0.0.0:$SERVER_PORT"
+    working_dir: /var/www/server
+    volumes:
+      - ./server:/var/www/server
+    environment:
+      - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+    env_file:
+      - .env
+
+  database:
+    image: mysql:8.0
+    container_name: ${DATABASE_HOST}-linkUp
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "$DATABASE_PORT:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  client:
+    container_name: client-linkUp
+    build: ./client
+    working_dir: /var/www/client
+    ports:
+      - "$CLIENT_PORT:$CLIENT_PORT"
+    volumes:
+      - ./client:/var/www/client
+      - ./server:/var/www/server
+    environment:
+      - REACT_APP_GRAPHQL_ENDPOINT=${REACT_APP_GRAPHQL_ENDPOINT}
