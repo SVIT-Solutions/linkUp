@@ -101,16 +101,15 @@ const Navbar: FC = () => {
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <LinkUpLogo onClick={logoClickHandler} />
-
             <Box style={{ display: 'flex', alignItems: 'center' }}>
-              <LanguageSelector sx={{ mr: 2 }} />
+              <LanguageSelector style={{ marginRight: '20px' }} />
               <ColorThemeSwitchButton style={{ marginRight: '20px' }} />
               {authContext?.isAuth ? (
                 <Box>
                   <Tooltip title="Open settings">
                     <IconButton
                       onClick={handleOpenUserMenu}
-                      style={{ padding: 0 }}
+                      style={{ padding: 0, marginLeft: '6px' }}
                     >
                       <Avatar alt="Remy Sharp" />
                     </IconButton>

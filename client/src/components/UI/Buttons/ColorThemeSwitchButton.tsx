@@ -25,11 +25,9 @@ const ColorThemeSwitchButton: FC<ColorThemeSwitchButtonProps> = ({ style }) => {
       height: '20px',
       cursor: 'pointer',
       '& path': {
-        // @ts-ignore
-        stroke: theme?.overrides?.MuiIconButton?.root?.color,
+        stroke: theme?.palette?.text?.primary,
         strokeWidth: '0.1px',
-        // @ts-ignore
-        fill: theme?.overrides?.MuiIconButton?.root?.color,
+        fill: theme?.palette?.text?.primary,
       },
     },
     activeIcon: {
@@ -41,8 +39,7 @@ const ColorThemeSwitchButton: FC<ColorThemeSwitchButtonProps> = ({ style }) => {
     iconDelimiter: {
       width: '1.2px',
       height: '17px',
-      // @ts-ignore
-      backgroundColor: theme?.overrides?.MuiIconButton?.root?.color,
+      backgroundColor: theme?.palette?.text?.primary,
       margin: '0 5.56px',
     },
   });

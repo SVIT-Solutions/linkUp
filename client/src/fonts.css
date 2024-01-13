@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'CourierPrime-Regular';
+  src: url('assets/fonts/CourierPrime-Regular.ttf') format('ttf'),
+    url('assets/fonts/CourierPrime-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

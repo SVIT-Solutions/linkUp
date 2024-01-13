@@ -22,7 +22,7 @@ const LinkUpLogo: FC<LinkUpLogoProps> = ({ onClick, style }) => {
       <Typography variant="h5" color="secondary">
         /
       </Typography>
-      <Typography variant="h5">link</Typography>
+      <Typography variant="h5">Link</Typography>
       <Typography variant="h5" color="secondary">
         Up
       </Typography>

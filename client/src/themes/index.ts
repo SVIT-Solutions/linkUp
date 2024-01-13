@@ -8,7 +8,8 @@ export const lightColors = {
   textPrimary: '#000000',
   textSecondary: '#757575',
   primaryButtonTextColor: '#FFFFFF',
-  iconColor: '#000000',
+  buttonTextColor: '#00A3FF',
+  iconColor: '#00A3FF',
   linkColor: '#00A3FF',
 };
 
@@ -20,12 +21,16 @@ export const darkColors = {
   textPrimary: '#FFFFFF',
   textSecondary: '#BDBDBD',
   primaryButtonTextColor: '#FFFFFF',
+  buttonTextColor: '#00A3FF',
   iconColor: '#FFFFFF',
   linkColor: '#0386D5',
 };
 
 const createCustomTheme = (colors: any) => {
   return createTheme({
+    typography: {
+      fontFamily: 'CourierPrime-Regular, sans-serif',
+    },
     palette: {
       primary: {
         main: colors.primary,
@@ -44,6 +49,9 @@ const createCustomTheme = (colors: any) => {
     },
     overrides: {
       MuiButton: {
+        root: {
+          color: colors.buttonTextColor,
+        },
         containedPrimary: {
           color: colors.primaryButtonTextColor,
         },
