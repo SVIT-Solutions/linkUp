@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
 import { Box, Modal as MuiModal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { ModalProps as MuiModalProps } from '@material-ui/core';
 
-interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
+export interface ModalProps extends MuiModalProps {
   maxWidth?: string;
 }
 
