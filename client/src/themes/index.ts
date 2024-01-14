@@ -66,8 +66,15 @@ const createCustomTheme = (colors: any) => {
       MuiOutlinedInput: {
         root: {
           color: colors.inputTextColor,
+          '& input:-webkit-autofill': {
+            color: colors.inputTextColor,
+          },
+          '& input:-webkit-autofill::first-line': {
+            color: colors.inputTextColor,
+          },
         },
       },
+
       MuiLink: {
         root: {
           color: colors.linkColor,

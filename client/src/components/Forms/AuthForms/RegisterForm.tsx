@@ -109,6 +109,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
+        autoComplete="email"
       />
 
       <TextField
