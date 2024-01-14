@@ -16,6 +16,8 @@ const resources = {
       username: 'Username',
       password: 'Password',
       confirm_password: 'Confirm Password',
+      failed_to_login: 'Failed to login',
+      this_field_is_required: 'This field is required',
     },
   },
   uk: {
@@ -32,6 +34,8 @@ const resources = {
       username: "Ім'я користувача",
       password: 'Пароль',
       confirm_password: 'Підтвердьте пароль',
+      failed_to_login: 'Не вдалося увійти',
+      this_field_is_required: "Це поле є обов'язковим",
     },
   },
 };

@@ -102,7 +102,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       style={{ width: '700px' }}
     >
       <TextField
-        {...register('email', { required: 'This field is required' })}
+        {...register('email', { required: t('this_field_is_required') })}
         label={t('email')}
         variant="outlined"
         margin="normal"
@@ -112,7 +112,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       />
 
       <TextField
-        {...register('username', { required: 'This field is required' })}
+        {...register('username', { required: t('this_field_is_required') })}
         label={t('username')}
         variant="outlined"
         margin="normal"
@@ -122,7 +122,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       />
 
       <TextField
-        {...register('password1', { required: 'This field is required' })}
+        {...register('password1', { required: t('this_field_is_required') })}
         label={t('password')}
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
@@ -142,7 +142,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       />
 
       <TextField
-        {...register('password2', { required: 'This field is required' })}
+        {...register('password2', { required: t('this_field_is_required') })}
         label={t('confirm_password')}
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
