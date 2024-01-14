@@ -18,7 +18,7 @@ const resources = {
       confirm_password: 'Confirm Password',
     },
   },
-  ua: {
+  uk: {
     translations: {
       home: 'Головна',
       login: 'Увійти',

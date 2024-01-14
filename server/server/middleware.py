@@ -10,7 +10,9 @@ class SetLanguageMiddleware:
         request.LANGUAGE_CODE = translation.get_language()
 
         response = self.get_response(request)
-        
-        print(f"Current language code: {request.LANGUAGE_CODE}")
+
+        response['Content-Language'] = user_language
+
+        print(f"Current language code: {user_language}")
 
         return response

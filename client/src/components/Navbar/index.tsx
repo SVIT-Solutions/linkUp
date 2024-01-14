@@ -158,7 +158,7 @@ const Navbar: FC = () => {
                     {t('singup')}
                   </RootButton>
                 </Box>
-              )}{' '}
+              )}
             </Box>
           </Toolbar>
         </Container>

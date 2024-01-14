@@ -62,7 +62,8 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
       router(RouteNames.HOME);
       setGeneralError('');
     } else {
-      setGeneralError('Incorrect username or password');
+      if (error?.validationErrors[0]?.field === '__all__')
+        setGeneralError(error?.validationErrors[0]?.messages[0]);
     }
   };
 

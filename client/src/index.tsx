@@ -32,7 +32,12 @@ const authLink = setContext((_, { headers }) => {
       },
     };
   }
-  return { headers };
+  return {
+    headers: {
+      ...headers,
+      'Accept-Language': i18n.language,
+    },
+  };
 });
 
 const client = new ApolloClient({

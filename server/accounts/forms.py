@@ -35,10 +35,10 @@ class AuthForm(AuthenticationForm):
             if self.user_cache is not None:
                 self.cleaned_data['username'] = self.user_cache.username
             else:
-                self.add_error('username', forms.ValidationError(
+                self.add_error('__all__', forms.ValidationError(
                     _('Please enter your correct email address and password.'),
                     code='invalid_login',
-                    params={'field': 'username'}
+                    params={'field': '__all__'}
                 ))
         elif email and not password:
             raise forms.ValidationError(
@@ -52,10 +52,11 @@ class AuthForm(AuthenticationForm):
                 params={'field': 'username'}
             ))
         else:
-            raise forms.ValidationError(
+            self.add_error('__all__', forms.ValidationError(
                 _('Please enter your correct email address and password.'),
                 code='invalid_login',
-                params={'field': '__all__'})
+                params={'field': '__all__'}
+            ))
 
 
 
