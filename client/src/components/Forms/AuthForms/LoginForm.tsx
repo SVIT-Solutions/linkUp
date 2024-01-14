@@ -62,7 +62,11 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
       router(RouteNames.HOME);
       setGeneralError('');
     } else {
-      setGeneralError('Incorrect username or password');
+      setGeneralError(
+        error?.validationErrors[0]?.field === '__all__'
+          ? error?.validationErrors[0]?.messages[0]
+          : t('failed_to_login')
+      );
     }
   };
 
@@ -78,17 +82,18 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
       style={{ width: '700px' }}
     >
       <TextField
-        {...register('username', { required: 'This field is required' })}
+        {...register('username', { required: t('this_field_is_required') })}
         label={t('email')}
         variant="outlined"
         margin="normal"
         fullWidth
         error={!!errors.username}
         helperText={errors.username?.message}
+        autoComplete="email"
       />
 
       <TextField
-        {...register('password', { required: 'This field is required' })}
+        {...register('password', { required: t('this_field_is_required') })}
         label={t('password')}
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
