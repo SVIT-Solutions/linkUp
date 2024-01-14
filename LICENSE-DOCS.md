@@ -16,7 +16,7 @@ See the [LICENSE](LICENSE) file for the full text of the license.
 
 ## Copyright
 
-2023 SVIT Solutions
+2024 SVIT Solutions
 
 ## Contact
 
