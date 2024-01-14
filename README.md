@@ -1,51 +1,39 @@
-### Build docker
+# LinkUp
 
-  - `docker compose build`
+LinkUp is an innovative application designed to facilitate seamless sharing of photos and videos through links. At its current stage, the application is under active development, and this README provides a brief overview of the project.
 
-### Run docker
+## Features
 
-  - `docker compose up`
+- **Media Sharing**: Users can effortlessly upload photos or videos to the application and generate shareable links for easy distribution.
 
-### Set up front-end
+- **Link-based Sharing**: Sharing media is as simple as creating a link. Users can share the generated links with others, allowing them to access the shared content directly.
 
-- ### Install node modules
+## Technology Stack
 
-  - `docker compose run client yarn`
+- **Frontend**: The user interface is built using [React](https://reactjs.org/), providing a responsive and interactive experience.
 
-- ### Run tests
+- **Backend**: The backend logic is implemented with [Django](https://www.djangoproject.com/) to handle file uploads, link generation, and other server-side functionalities.
 
-  - `docker compose run client yarn test`
+- **Database**: [MySQL](https://www.mysql.com/) is used to store user data, links, and other relevant information.
 
-- ### Install a new package
+## Contribution Guidelines
 
-  - `docker compose run client yarn add <package_name>`
+LinkUp welcomes contributions from the community. If you'd like to contribute, please follow these guidelines:
 
-### Set up back-end
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and submit a pull request.
 
-- ### Update the database schema
+## Issues and Bug Reports
 
-  - `docker compose run server python manage.py makemigrations`
+If you encounter any issues, please report it on the [GitHub issue tracker](https://github.com/SVIT-Solutions/linkup/issues).
 
-- ### Apply the migration
+## License
 
-  - `docker compose run server python manage.py migrate`
+This project is licensed under the [MIT License](LICENSE).
 
-- ### Create superuser
+## Contact
 
-  - `docker compose run server python manage.py createsuperuser`
+For any inquiries or suggestions, feel free to contact us at [dmitrylukienko.business@gmail.com](mailto:dmitrylukienko.business@gmail.com).
 
-- ### Django shell
-
-  - `docker compose run server python manage.py shell`
-
-- ### Run tests
-
-  - `docker compose run server python manage.py test`
-
-- ### Collect static files
-
-  - `docker compose run server python manage.py collectstatic`
-
-- ### Create a new Django app
-
-  - `docker compose run server python manage.py startapp <your_app_name>`
+Thank you for using LinkUp!
