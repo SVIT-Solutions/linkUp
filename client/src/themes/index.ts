@@ -11,6 +11,7 @@ export const lightColors = {
   buttonTextColor: '#00A3FF',
   iconColor: '#00A3FF',
   linkColor: '#00A3FF',
+  inputTextColor: '#A6A6A6',
 };
 
 export const darkColors = {
@@ -24,6 +25,7 @@ export const darkColors = {
   buttonTextColor: '#00A3FF',
   iconColor: '#FFFFFF',
   linkColor: '#0386D5',
+  inputTextColor: '#A6A6A6',
 };
 
 const createCustomTheme = (colors: any) => {
@@ -59,6 +61,11 @@ const createCustomTheme = (colors: any) => {
       MuiIconButton: {
         root: {
           color: colors.iconColor,
+        },
+      },
+      MuiOutlinedInput: {
+        root: {
+          color: colors.inputTextColor,
         },
       },
       MuiLink: {
