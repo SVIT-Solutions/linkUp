@@ -32,6 +32,20 @@ typing-extensions = {version = ">=4", markers = "python_version < \"3.11\""}
 tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
 
 [[package]]
+name = "babel"
+version = "2.14.0"
+description = "Internationalization utilities"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "Babel-2.14.0-py3-none-any.whl", hash = "sha256:efb1a25b7118e67ce3a259bed20545c29cb68be8ad2c784c83689981b7a57287"},
+    {file = "Babel-2.14.0.tar.gz", hash = "sha256:6919867db036398ba21eb5c7a0f6b28ab8cbc3ae7a73a44ebe34ae74a4e7d363"},
+]
+
+[package.extras]
+dev = ["freezegun (>=1.0,<2.0)", "pytest (>=6.0)", "pytest-cov"]
+
+[[package]]
 name = "django"
 version = "4.2.9"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -280,4 +294,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.13"
-content-hash = "658fe7e3f15b4cbaae37845b5cf7c2cfe90eb01b647d41b77a0d5c39d89aca8c"
+content-hash = "1728b74b9125657a466b668d101ff9c967c69b3d7d2d9c6e1aad93b4758bad82"

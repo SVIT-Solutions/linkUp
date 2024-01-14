@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'serious_django_graphene',
     'corsheaders',
+    'babel',
 
     'permissions',
 ]
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'server.middleware.SetLanguageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'permissions.middleware.AllowedDomainMiddleware',
 ]
@@ -165,3 +168,12 @@ GRAPHQL_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+LANGUAGE_CODE = 'en-us'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
