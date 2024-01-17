@@ -1,7 +1,16 @@
 @font-face {
   font-family: 'CourierPrime-Regular';
-  src: url('assets/fonts/CourierPrime-Regular.ttf') format('ttf'),
-    url('assets/fonts/CourierPrime-Regular.ttf') format('truetype');
+  src: url('assets/fonts/CourierPrime/CourierPrime-Regular.ttf') format('ttf'),
+    url('assets/fonts/CourierPrime/CourierPrime-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CourierNew-Regular';
+  src: url('assets/fonts/CourierNew/courier-new.woff2') format('woff2'),
+    url('assets/fonts/CourierNew/courier-new.woff') format('woff'),
+    url('assets/fonts/CourierNew/courier-new.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

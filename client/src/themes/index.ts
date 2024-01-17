@@ -31,7 +31,7 @@ export const darkColors = {
 const createCustomTheme = (colors: any) => {
   return createTheme({
     typography: {
-      fontFamily: 'CourierPrime-Regular, sans-serif',
+      fontFamily: 'CourierPrime-Regular, CourierNew-Regular, sans-serif',
     },
     palette: {
       primary: {
