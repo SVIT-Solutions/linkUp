@@ -11,17 +11,17 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { AuthContext } from 'context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { makeStyles } from '@material-ui/styles';
 import { RouteNames } from 'router';
+import { AuthContext } from 'context/AuthContext';
 import AuthModal, {
   AuthModalNames,
 } from 'components/Modals/AuthModals/AuthModal';
-import LanguageSelector from 'components/UI/LanguageSelector';
-import { makeStyles } from '@material-ui/styles';
-import RootButton from 'components/UI/Buttons/RootButton';
 import ColorThemeSwitchButton from 'components/UI/Buttons/ColorThemeSwitchButton';
+import LanguageSelector from 'components/UI/LanguageSelector';
+import RootButton from 'components/UI/Buttons/RootButton';
 import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 const useStyles = makeStyles(() => ({

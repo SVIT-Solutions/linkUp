@@ -1,0 +1,7 @@
+Dear {{ user.username }},
+
+Thank you for registering with us! To complete the registration process, please click on the following link: {{ confirmation_link }}.
+
+If you have any questions or encounter any issues, feel free to contact our support team at {{ support_email }}.
+
+Welcome aboard!

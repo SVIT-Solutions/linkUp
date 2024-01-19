@@ -2,7 +2,6 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
-  Button,
   IconButton,
   InputAdornment,
   Link,

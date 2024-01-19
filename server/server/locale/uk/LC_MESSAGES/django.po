@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 02:58+0000\n"
+"POT-Creation-Date: 2024-01-19 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,26 +20,27 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-#: accounts/forms.py:10
+
+#: accounts/forms.py:11
 msgid "Username"
 msgstr "Ім'я"
 
-#: accounts/forms.py:15
+#: accounts/forms.py:16
 msgid "Password"
 msgstr "Пароль"
 
-#: accounts/forms.py:24
-msgid "Account is not active. Please confirm your account and log in again."
-msgstr "Обліковий запис не активний. Підтвердьте свій обліковий запис і увійдіть знову."
+#: accounts/forms.py:25
+msgid "Account is not active. Please confirm your account."
+msgstr "Обліковий запис не активний. Підтвердьте свій обліковий запис."
 
-#: accounts/forms.py:39 accounts/forms.py:56
+#: accounts/forms.py:39 accounts/forms.py:54 accounts/forms.py:69
 msgid "Please enter your correct email address and password."
 msgstr "Будь ласка, введіть правильну адресу електронної пошти та пароль."
 
-#: accounts/forms.py:45
+#: accounts/forms.py:59
 msgid "Please enter your password."
 msgstr "Будь ласка, введіть свій пароль."
 
-#: accounts/forms.py:50
+#: accounts/forms.py:64
 msgid "Please enter your email address."
 msgstr "Будь ласка, введіть адресу електронної пошти."

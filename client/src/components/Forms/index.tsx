@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from 'react';
+import React from 'react';
 import { Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
 import { makeStyles } from '@material-ui/styles';
@@ -6,11 +6,16 @@ import { makeStyles } from '@material-ui/styles';
 interface FormProps {
   children: React.ReactNode;
   isLoading: boolean;
-  style?: CSSProperties;
-  onSubmit: () => void;
+  style?: React.CSSProperties;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const Form: FC<FormProps> = ({ children, isLoading, style, onSubmit }) => {
+const Form: React.FC<FormProps> = ({
+  children,
+  isLoading,
+  style,
+  onSubmit,
+}) => {
   const useStyles = makeStyles({
     wrapper: { padding: '14px', opacity: isLoading ? 0.5 : 1 },
   });

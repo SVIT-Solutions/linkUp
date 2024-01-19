@@ -9,6 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=36)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
+    verification_token = models.CharField(max_length=255, blank=True, null=True)
 
     objects = UserManager()
 
