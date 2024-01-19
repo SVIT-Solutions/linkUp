@@ -2,14 +2,12 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
-  Button,
   IconButton,
   InputAdornment,
   Link,
   TextField,
   Typography,
 } from '@material-ui/core';
-import { AuthContext } from 'context/AuthContext';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from 'router';
@@ -45,7 +43,6 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
   } = useForm<RegisterFormInput>();
 
   const router = useNavigate();
-  const authContext = useContext(AuthContext);
   const [registerMutation, { loading, error }] = useMutation(REGISTER);
 
   const [generalError, setGeneralError] = useState<String>('');
@@ -60,14 +57,10 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
     const response = await registerMutation({
       variables: data,
     });
-    const { user, token, success, error } = response.data.register;
+    const { success, error } = response.data.register;
     if (success) {
-      localStorage.setItem('token', token);
-      delete user.__typename;
-      authContext?.setUser(user);
-      authContext?.setIsAuth(true);
       if (closeModal) closeModal();
-      router(RouteNames.HOME);
+      router(`${RouteNames.CONFIRM_EMAIL_MESSAGE}?email=${data.email}`);
       setGeneralError('');
     } else {
       if (!error?.validationErrors?.length) return;

@@ -36,10 +36,6 @@ export const REGISTER = gql`
       password2: $password2
     ) {
       success
-      token
-      user {
-        ...User
-      }
       error {
         ... on ValidationErrors {
           validationErrors {
@@ -50,13 +46,25 @@ export const REGISTER = gql`
       }
     }
   }
-  ${fragment.UserFragment}
 `;
 
 export const VERIFY_TOKEN = gql`
   mutation verifyToken($token: String!) {
     verifyToken(token: $token) {
       success
+      user {
+        ...User
+      }
+    }
+  }
+  ${fragment.UserFragment}
+`;
+
+export const VERIFY_EMAIL = gql`
+  mutation verifyEmail($token: String!) {
+    verifyEmail(token: $token) {
+      success
+      token
       user {
         ...User
       }

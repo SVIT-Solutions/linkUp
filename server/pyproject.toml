@@ -15,6 +15,7 @@ serious-django-graphene = "^0.5.1"
 django-cors-headers = "^4.2.0"
 mysqlclient = "^2.2.1"
 babel = "^2.14.0"
+python-decouple = "^3.8"
 
 
 [build-system]

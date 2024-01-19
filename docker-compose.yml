@@ -12,7 +12,6 @@ services:
       - ./server:/var/www/server
     environment:
       - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
     env_file:
       - .env
 

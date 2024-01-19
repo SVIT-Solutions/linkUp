@@ -74,10 +74,10 @@ const createCustomTheme = (colors: any) => {
           },
         },
       },
-
       MuiLink: {
         root: {
           color: colors.linkColor,
+          cursor: 'pointer',
         },
       },
       MuiTypography: {
