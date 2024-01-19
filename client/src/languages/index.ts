@@ -24,6 +24,7 @@ const resources = {
       something_went_wrong: 'Something went wrong.',
       your_email_already_confirmed:
         'Your email address has already been confirmed!',
+      forgot_password: 'Forgot password?',
     },
   },
   uk: {
@@ -47,6 +48,7 @@ const resources = {
         "На пошту '{{email}}' надіслано листа. перейдіть за посиланням у листі, щоб підтвердити свою адресу електронної пошти",
       something_went_wrong: 'Щось пішло не так.',
       your_email_already_confirmed: 'Ваша електронна адреса вже підтверджена!',
+      forgot_password: 'Забули пароль?',
     },
   },
 };

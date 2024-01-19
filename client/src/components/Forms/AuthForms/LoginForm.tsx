@@ -2,6 +2,7 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
+  Box,
   IconButton,
   InputAdornment,
   Link,
@@ -16,6 +17,7 @@ import { RouteNames } from 'router';
 import Form from 'components/Forms';
 import { useTranslation } from 'react-i18next';
 import RootButton from 'components/UI/Buttons/RootButton';
+import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 interface LoginFormInput {
   username: string;
@@ -80,6 +82,10 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
       onSubmit={handleSubmit(onSubmit)}
       style={{ width: '700px' }}
     >
+      <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <LinkUpLogo />
+      </Box>
+
       <TextField
         {...register('username', { required: t('this_field_is_required') })}
         label={t('email')}
@@ -111,6 +117,16 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
         }}
       />
 
+      <Typography
+        style={{
+          marginBottom: '18px',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Link>{t('forgot_password')}</Link>
+      </Typography>
+
       <Typography variant="body1" color="error">
         {generalError}
       </Typography>
@@ -120,13 +136,11 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
       </RootButton>
 
       <Typography
-        style={{ marginTop: '8px', textAlign: 'center' }}
+        style={{ marginTop: '10px', textAlign: 'center' }}
         variant="body1"
       >
         {t('dont_have_an_account')}?{' '}
-        <Link style={{ cursor: 'pointer' }} onClick={toRegisterClickHandler}>
-          {t('singup')}
-        </Link>
+        <Link onClick={toRegisterClickHandler}>{t('singup')}</Link>
       </Typography>
     </Form>
   );

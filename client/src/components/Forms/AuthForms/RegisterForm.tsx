@@ -2,6 +2,7 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
+  Box,
   IconButton,
   InputAdornment,
   Link,
@@ -15,6 +16,7 @@ import Form from 'components/Forms';
 import { REGISTER } from 'api/mutations';
 import { useTranslation } from 'react-i18next';
 import RootButton from 'components/UI/Buttons/RootButton';
+import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 interface IValidationError {
   field: string;
@@ -94,6 +96,10 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       isLoading={loading}
       style={{ width: '700px' }}
     >
+      <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <LinkUpLogo />
+      </Box>
+
       <TextField
         {...register('email', { required: t('this_field_is_required') })}
         label={t('email')}
@@ -113,6 +119,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.username}
         helperText={errors.username?.message}
+        autoComplete="off"
       />
 
       <TextField
@@ -164,13 +171,11 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       </RootButton>
 
       <Typography
-        style={{ marginTop: '8px', textAlign: 'center' }}
+        style={{ marginTop: '10px', textAlign: 'center' }}
         variant="body1"
       >
         {t('already_have_an_account')}?{' '}
-        <Link style={{ cursor: 'pointer' }} onClick={toLoginClickHandler}>
-          {t('login')}
-        </Link>
+        <Link onClick={toLoginClickHandler}>{t('login')}</Link>
       </Typography>
     </Form>
   );

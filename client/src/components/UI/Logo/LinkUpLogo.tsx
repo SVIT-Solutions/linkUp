@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     cursor: 'pointer',
     display: 'flex',
+    userSelect: 'none',
   },
 }));
 

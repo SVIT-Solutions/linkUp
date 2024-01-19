@@ -11,7 +11,8 @@ export const lightColors = {
   buttonTextColor: '#00A3FF',
   iconColor: '#00A3FF',
   linkColor: '#00A3FF',
-  inputTextColor: '#A6A6A6',
+  inputTextColor: '#000000',
+  inputBorderColor: '#A6A6A6',
 };
 
 export const darkColors = {
@@ -26,6 +27,7 @@ export const darkColors = {
   iconColor: '#FFFFFF',
   linkColor: '#0386D5',
   inputTextColor: '#A6A6A6',
+  inputBorderColor: '#A6A6A6',
 };
 
 const createCustomTheme = (colors: any) => {
@@ -71,6 +73,9 @@ const createCustomTheme = (colors: any) => {
           },
           '& input:-webkit-autofill::first-line': {
             color: colors.inputTextColor,
+          },
+          '& fieldset': {
+            borderColor: colors.inputBorderColor,
           },
         },
       },
