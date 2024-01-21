@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { RouteNames } from 'router';
 import { makeStyles } from '@material-ui/styles';
+import BackToHomePageLink from 'components/Links/BackToHomePageLink';
 
 const useStyles = makeStyles({
   title: { textAlign: 'center' },
@@ -30,13 +31,7 @@ const AccountConfirmationEmailSent = () => {
       <Typography className={classes.title}>
         {t('account_confirmation_email_sent', { email })}
       </Typography>
-      <Link
-        onClick={(e) => e.stopPropagation()}
-        className={classes.link}
-        href={RouteNames.HOME}
-      >
-        {t('back_to_homepage')}
-      </Link>
+      <BackToHomePageLink className={classes.link} />
     </Box>
   );
 };

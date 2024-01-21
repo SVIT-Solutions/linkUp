@@ -1,8 +1,10 @@
+import React from 'react';
 import Auth from 'pages/Auth';
 import ConfirmEmail from 'pages/Auth/ConfirmEmail';
-import Home from 'pages/Home';
+import PasswordResetRequest from 'pages/Auth/PasswordResetRequest';
 import AccountConfirmationEmailSent from 'pages/Messages/AccountConfirmationEmailSent';
-import React from 'react';
+import Home from 'pages/Home';
+import ResetPassword from 'pages/Auth/ResetPassword';
 
 export interface IRoute {
   path: string;
@@ -15,6 +17,8 @@ export enum RouteNames {
   REGISTER = '/register',
   CONFIRM_EMAIL = '/confirm-email',
   CONFIRM_EMAIL_MESSAGE = '/account-confirmation-email-sent',
+  PASSWORD_RESET_REQUEST = '/password-reset-request',
+  PASSWORD_RESET = '/password-reset',
 }
 
 export const publicRoutes: IRoute[] = [
@@ -25,6 +29,14 @@ export const publicRoutes: IRoute[] = [
   {
     path: RouteNames.CONFIRM_EMAIL_MESSAGE,
     element: AccountConfirmationEmailSent,
+  },
+  {
+    path: RouteNames.PASSWORD_RESET_REQUEST,
+    element: PasswordResetRequest,
+  },
+  {
+    path: RouteNames.PASSWORD_RESET,
+    element: ResetPassword,
   },
 ];
 

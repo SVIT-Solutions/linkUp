@@ -3,7 +3,7 @@ from graphql_jwt.shortcuts import get_token
 from serious_django_graphene import FormMutation, ValidationErrors
 
 from .schema import UserType
-from .forms import AuthForm, UserRegisterForm, TokenVerificationForm
+from .forms import AuthForm, UserRegisterForm, TokenVerificationForm, PasswordResetRequestForm, ResetPasswordForm
 from .models import User
 
 class LoginMutation(FormMutation):
@@ -89,3 +89,30 @@ class VerifyEmailMutation(graphene.Mutation):
             success = False
 
         return cls(user=user, success=success, token=access_token)
+
+
+class PasswordResetRequestMutation(graphene.Mutation):
+    class Arguments:
+        email = graphene.String(required=True)
+
+    success = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, email):
+        form = PasswordResetRequestForm({'email': email})
+        success = form.process()
+        return cls(success=success)
+
+
+class ResetPasswordMutation(graphene.Mutation):
+    class Arguments:
+        password = graphene.String(required=True)
+        token = graphene.String(required=True)
+
+    success = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, password, token):
+        form = ResetPasswordForm({'password': password, 'token': token})
+        success = form.process()
+        return cls(success=success)

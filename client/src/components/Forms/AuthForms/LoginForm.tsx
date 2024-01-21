@@ -17,7 +17,6 @@ import { RouteNames } from 'router';
 import Form from 'components/Forms';
 import { useTranslation } from 'react-i18next';
 import RootButton from 'components/UI/Buttons/RootButton';
-import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 interface LoginFormInput {
   username: string;
@@ -76,16 +75,18 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
     if (closeModal) closeModal();
   };
 
+  const forgotPasswordClickHandler = () => {
+    router(RouteNames.PASSWORD_RESET_REQUEST);
+    if (closeModal) closeModal();
+  };
+
   return (
     <Form
       isLoading={loading}
       onSubmit={handleSubmit(onSubmit)}
       style={{ width: '700px' }}
+      withLogo
     >
-      <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-        <LinkUpLogo />
-      </Box>
-
       <TextField
         {...register('username', { required: t('this_field_is_required') })}
         label={t('email')}
@@ -117,6 +118,10 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
         }}
       />
 
+      <Typography variant="body1" color="error">
+        {generalError}
+      </Typography>
+
       <Typography
         style={{
           marginBottom: '18px',
@@ -124,11 +129,7 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
           justifyContent: 'center',
         }}
       >
-        <Link>{t('forgot_password')}</Link>
-      </Typography>
-
-      <Typography variant="body1" color="error">
-        {generalError}
+        <Link onClick={forgotPasswordClickHandler}>{t('forgot_password')}</Link>
       </Typography>
 
       <RootButton type="submit" variant="contained" color="primary" fullWidth>

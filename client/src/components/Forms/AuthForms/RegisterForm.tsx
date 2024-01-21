@@ -2,7 +2,6 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
-  Box,
   IconButton,
   InputAdornment,
   Link,
@@ -16,7 +15,6 @@ import Form from 'components/Forms';
 import { REGISTER } from 'api/mutations';
 import { useTranslation } from 'react-i18next';
 import RootButton from 'components/UI/Buttons/RootButton';
-import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 interface IValidationError {
   field: string;
@@ -95,11 +93,8 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       onSubmit={handleSubmit(onSubmit)}
       isLoading={loading}
       style={{ width: '700px' }}
+      withLogo
     >
-      <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-        <LinkUpLogo />
-      </Box>
-
       <TextField
         {...register('email', { required: t('this_field_is_required') })}
         label={t('email')}
@@ -131,6 +126,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.password1}
         helperText={errors.password1?.message}
+        autoComplete="off"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -151,6 +147,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.password2}
         helperText={errors.password2?.message}
+        autoComplete="off"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -166,7 +163,13 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
-      <RootButton type="submit" variant="contained" color="primary" fullWidth>
+      <RootButton
+        style={{ marginTop: '16px' }}
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
         {t('singup')}
       </RootButton>
 

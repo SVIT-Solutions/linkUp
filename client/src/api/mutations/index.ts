@@ -72,3 +72,19 @@ export const VERIFY_EMAIL = gql`
   }
   ${fragment.UserFragment}
 `;
+
+export const PASSWORD_RESET_REQUEST = gql`
+  mutation passwordResetRequest($email: String!) {
+    passwordResetRequest(email: $email) {
+      success
+    }
+  }
+`;
+
+export const RESET_PASSWORD = gql`
+  mutation resetPassword($password: String!, $token: String!) {
+    resetPassword(password: $password, token: $token) {
+      success
+    }
+  }
+`;

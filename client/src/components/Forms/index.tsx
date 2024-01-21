@@ -1,11 +1,13 @@
 import React from 'react';
-import { Card } from '@material-ui/core';
+import { Box, Card } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
 import { makeStyles } from '@material-ui/styles';
+import LinkUpLogo from 'components/UI/Logo/LinkUpLogo';
 
 interface FormProps {
   children: React.ReactNode;
-  isLoading: boolean;
+  isLoading?: boolean;
+  withLogo?: boolean;
   style?: React.CSSProperties;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -13,6 +15,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({
   children,
   isLoading,
+  withLogo,
   style,
   onSubmit,
 }) => {
@@ -33,6 +36,11 @@ const Form: React.FC<FormProps> = ({
     >
       {isLoading === true && <Loader style={{ position: 'absolute' }} />}
       <Card className={classes.wrapper} style={style}>
+        {withLogo === true && (
+          <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+            <LinkUpLogo />
+          </Box>
+        )}
         {children}
       </Card>
     </form>

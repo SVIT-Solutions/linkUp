@@ -62,18 +62,18 @@ const Navbar: FC = () => {
   const logoClickHandler = () => router(RouteNames.HOME);
 
   const loginCLickHandler = () => {
-    if (pathname === RouteNames.LOGIN || pathname === RouteNames.REGISTER) {
-      router(RouteNames.LOGIN);
-    } else {
+    if (pathname === RouteNames.HOME) {
       setModalTypeOpen(AuthModalNames.LOGIN);
+    } else {
+      router(RouteNames.LOGIN);
     }
   };
 
   const registerCLickHandler = () => {
-    if (pathname === RouteNames.LOGIN || pathname === RouteNames.REGISTER) {
-      router(RouteNames.REGISTER);
-    } else {
+    if (pathname === RouteNames.HOME) {
       setModalTypeOpen(AuthModalNames.REGISTER);
+    } else {
+      router(RouteNames.REGISTER);
     }
   };
 

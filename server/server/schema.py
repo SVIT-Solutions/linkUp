@@ -15,6 +15,8 @@ class Mutation(graphene.ObjectType):
     verify_token = ac_mutation.VerifyTokenMutation.Field()
     refresh_token = graphql_jwt.Refresh.Field()
     verify_email = ac_mutation.VerifyEmailMutation.Field()
+    password_reset_request = ac_mutation.PasswordResetRequestMutation.Field()
+    reset_password = ac_mutation.ResetPasswordMutation.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

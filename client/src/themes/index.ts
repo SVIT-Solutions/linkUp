@@ -3,7 +3,7 @@ import { createTheme } from '@material-ui/core/styles';
 export const lightColors = {
   primary: '#00A3FF',
   secondary: '#00A3FF',
-  background: '#FFFFFF',
+  background: '#F5F5F5',
   paper: '#FFFFFF',
   textPrimary: '#000000',
   textSecondary: '#757575',

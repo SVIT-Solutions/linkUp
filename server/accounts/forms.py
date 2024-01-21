@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
-from .utils import send_activation_email
+from .utils import send_activation_email, send_password_reset_email
 from .models import User
 
 
@@ -90,4 +90,36 @@ class UserRegisterForm(UserCreationForm):
 
 
 class TokenVerificationForm(forms.Form):
-    token = forms.CharField(max_length=255)
+    token = forms.CharField(max_length=255, required=True)
+
+
+class PasswordResetRequestForm(forms.Form):
+    email = forms.EmailField(required=True)
+    
+    def process(self):
+        success = False
+        if self.is_valid():
+            try:
+                user = User.objects.get(email=self.cleaned_data['email'])
+                send_password_reset_email(user)
+                success = True
+            except User.DoesNotExist:
+                success = True
+        return success
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(max_length=128, required=True)
+    token = forms.CharField(max_length=255, required=True)
+    
+    def process(self):
+        success = False
+        if self.is_valid():
+            try:
+                user = User.objects.get(password_change_token=self.cleaned_data['token'])
+                user.set_password(self.cleaned_data['password'])
+                user.password_change_token = None 
+                user.save()
+                success = True
+            except User.DoesNotExist:
+                success = False
+        return success
