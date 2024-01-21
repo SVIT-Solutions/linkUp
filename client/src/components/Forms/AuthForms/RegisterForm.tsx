@@ -93,6 +93,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
       onSubmit={handleSubmit(onSubmit)}
       isLoading={loading}
       style={{ width: '700px' }}
+      withLogo
     >
       <TextField
         {...register('email', { required: t('this_field_is_required') })}
@@ -113,6 +114,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.username}
         helperText={errors.username?.message}
+        autoComplete="off"
       />
 
       <TextField
@@ -124,6 +126,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.password1}
         helperText={errors.password1?.message}
+        autoComplete="off"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -144,6 +147,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.password2}
         helperText={errors.password2?.message}
+        autoComplete="off"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -159,18 +163,22 @@ const RegisterForm: FC<RegisterFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
-      <RootButton type="submit" variant="contained" color="primary" fullWidth>
+      <RootButton
+        style={{ marginTop: '16px' }}
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
         {t('singup')}
       </RootButton>
 
       <Typography
-        style={{ marginTop: '8px', textAlign: 'center' }}
+        style={{ marginTop: '10px', textAlign: 'center' }}
         variant="body1"
       >
         {t('already_have_an_account')}?{' '}
-        <Link style={{ cursor: 'pointer' }} onClick={toLoginClickHandler}>
-          {t('login')}
-        </Link>
+        <Link onClick={toLoginClickHandler}>{t('login')}</Link>
       </Typography>
     </Form>
   );

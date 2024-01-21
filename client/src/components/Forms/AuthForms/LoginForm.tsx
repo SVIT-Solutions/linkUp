@@ -2,6 +2,7 @@ import React, { FC, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
+  Box,
   IconButton,
   InputAdornment,
   Link,
@@ -74,11 +75,17 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
     if (closeModal) closeModal();
   };
 
+  const forgotPasswordClickHandler = () => {
+    router(RouteNames.PASSWORD_RESET_REQUEST);
+    if (closeModal) closeModal();
+  };
+
   return (
     <Form
       isLoading={loading}
       onSubmit={handleSubmit(onSubmit)}
       style={{ width: '700px' }}
+      withLogo
     >
       <TextField
         {...register('username', { required: t('this_field_is_required') })}
@@ -115,18 +122,26 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
         {generalError}
       </Typography>
 
+      <Typography
+        style={{
+          marginBottom: '18px',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Link onClick={forgotPasswordClickHandler}>{t('forgot_password')}</Link>
+      </Typography>
+
       <RootButton type="submit" variant="contained" color="primary" fullWidth>
         {t('login')}
       </RootButton>
 
       <Typography
-        style={{ marginTop: '8px', textAlign: 'center' }}
+        style={{ marginTop: '10px', textAlign: 'center' }}
         variant="body1"
       >
         {t('dont_have_an_account')}?{' '}
-        <Link style={{ cursor: 'pointer' }} onClick={toRegisterClickHandler}>
-          {t('singup')}
-        </Link>
+        <Link onClick={toRegisterClickHandler}>{t('singup')}</Link>
       </Typography>
     </Form>
   );

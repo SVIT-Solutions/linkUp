@@ -20,10 +20,21 @@ const resources = {
       this_field_is_required: 'This field is required',
       back_to_homepage: 'Back to Homepage',
       account_confirmation_email_sent:
-        "A letter has been sent to '{{email}}'. follow the link in the email to confirm your email address",
+        "A letter has been sent to '{{email}}'. follow the link in the email to confirm your email address.",
+      password_reset_email_sent:
+        "A password reset email was sent to '{{email}}'. Follow the link to reset your password.",
       something_went_wrong: 'Something went wrong.',
       your_email_already_confirmed:
         'Your email address has already been confirmed!',
+      forgot_password: 'Forgot password?',
+      your_email: 'Your Email',
+      reset_password: 'Reset password',
+      invalid_email_address: 'Invalid email address',
+      passwords_not_match: 'Passwords do not match',
+      new_password: 'New password',
+      submit: 'Submit',
+      password_successfully_changed:
+        'Your password has been successfully changed.',
     },
   },
   uk: {
@@ -44,9 +55,19 @@ const resources = {
       this_field_is_required: "Це поле є обов'язковим",
       back_to_homepage: 'Назад на домашню сторінку',
       account_confirmation_email_sent:
-        "На пошту '{{email}}' надіслано листа. перейдіть за посиланням у листі, щоб підтвердити свою адресу електронної пошти",
+        "На пошту '{{email}}' надіслано листа. перейдіть за посиланням у листі, щоб підтвердити свою адресу електронної пошти.",
+      password_reset_email_sent:
+        "Електронний лист для зміни пароля надіслано на адресу '{{email}}'. Перейдіть за посиланням, щоб змінити пароль.",
       something_went_wrong: 'Щось пішло не так.',
       your_email_already_confirmed: 'Ваша електронна адреса вже підтверджена!',
+      forgot_password: 'Забули пароль?',
+      your_email: 'Ваша електронна адреса',
+      reset_password: 'Скинути пароль',
+      invalid_email_address: 'Невірна адреса електронної пошти',
+      passwords_not_match: 'Паролі не збігаються',
+      new_password: 'Новий пароль',
+      submit: 'Підтвердити',
+      password_successfully_changed: 'Ваш пароль успішно змінено.',
     },
   },
 };

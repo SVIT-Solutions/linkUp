@@ -6,11 +6,10 @@ import { VERIFY_EMAIL } from 'api/mutations';
 import { AuthContext } from 'context/AuthContext';
 import { Box } from '@material-ui/core';
 import Loader from 'components/UI/Loaders/Loader';
-import { useTranslation } from 'react-i18next';
 import { RouteNames } from 'router';
+import ErrorMessage from 'components/UI/Messages/ErrorMessage';
 
 const ConfirmEmail = () => {
-  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
@@ -42,13 +41,7 @@ const ConfirmEmail = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {loading ? (
-        <Loader />
-      ) : !verifyEmailResult ? (
-        t('something_went_wrong')
-      ) : (
-        ''
-      )}
+      {loading ? <Loader /> : !verifyEmailResult ? <ErrorMessage /> : ''}
     </Box>
   );
 };
