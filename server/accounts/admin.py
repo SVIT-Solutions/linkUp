@@ -1,4 +1,11 @@
 from django.contrib import admin
-from .models import User
+from .models import User, UserProfile
 
-admin.site.register(User)
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+
+class UserAdmin(admin.ModelAdmin):
+    inlines = [UserProfileInline]
+
+admin.site.register(User, UserAdmin)

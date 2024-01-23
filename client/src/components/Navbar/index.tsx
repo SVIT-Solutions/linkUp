@@ -111,7 +111,7 @@ const Navbar: FC = () => {
                       onClick={handleOpenUserMenu}
                       style={{ padding: 0, marginLeft: '6px' }}
                     >
-                      <Avatar alt="Remy Sharp" />
+                      <Avatar src={authContext.user?.avatarUrl} />
                     </IconButton>
                   </Tooltip>
                   <Menu

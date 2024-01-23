@@ -7,8 +7,13 @@ from .models import User
 
 
 class UserType(DjangoObjectType):
+    avatar_url = graphene.String()
+
     class Meta:
         model = User
+
+    def resolve_avatar_url(self, info):
+        return self.userprofile.avatar.url if self.userprofile and self.userprofile.avatar else None
 
 
 class Query:
