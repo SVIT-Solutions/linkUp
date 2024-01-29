@@ -60,7 +60,7 @@ const PasswordResetRequestForm: FC<PasswordResetRequestFormProps> = ({
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
-        autoComplete="email"
+        autoComplete="off"
       />
       <RootButton
         style={{ marginTop: '16px' }}

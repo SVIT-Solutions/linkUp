@@ -42,19 +42,23 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to=avatar_upload_to, null=True, blank=True)
 
     def compress_avatar(self):
-        img = Image.open(self.avatar)
-        max_size = (300, 300)
-        img.thumbnail(max_size)
-        output = BytesIO()
-        img.save(output, format='JPEG', quality=85)
-        self.avatar.save(self.avatar.name, InMemoryUploadedFile(
-            output,
-            'ImageField',
-            self.avatar.name,
-            'image/jpeg',
-            output.tell(),
-            None
-        ), save=False)
+        if self.avatar:
+            try:
+                img = Image.open(self.avatar)
+                max_size = (300, 300)
+                img.thumbnail(max_size)
+                output = BytesIO()
+                img.save(output, format='JPEG', quality=85)
+                self.avatar.save(self.avatar.name, InMemoryUploadedFile(
+                    output,
+                    'ImageField',
+                    self.avatar.name,
+                    'image/jpeg',
+                    output.tell(),
+                    None
+                ), save=False)
+            except IOError as e:
+                print(f"Error compressing avatar: {e}")
 
     def __str__(self):
         return self.user.username
