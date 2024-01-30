@@ -95,7 +95,7 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
         fullWidth
         error={!!errors.username}
         helperText={errors.username?.message}
-        autoComplete="email"
+        autoComplete="off"
       />
 
       <TextField

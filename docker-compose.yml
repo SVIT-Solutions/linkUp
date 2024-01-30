@@ -14,6 +14,10 @@ services:
       - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
     env_file:
       - .env
+    depends_on:
+      - database
+      - redis
+      - celery
 
   database:
     image: mysql:8.0
@@ -24,7 +28,7 @@ services:
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
-      - "$DATABASE_PORT:3306"
+      - "$DATABASE_PORT:$DATABASE_PORT"
     volumes:
       - ./mysql_data:/var/lib/mysql
 
@@ -39,3 +43,35 @@ services:
       - ./server:/var/www/server
     environment:
       - REACT_APP_GRAPHQL_ENDPOINT=${REACT_APP_GRAPHQL_ENDPOINT}
+
+  redis:
+    image: "redis:latest"
+    container_name: redis-linkUp
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+  celery:
+    build: ./server
+    container_name: celery-linkUp
+    command: bash -c "poetry run celery -A server worker -l info"
+    working_dir: /var/www/server
+    volumes:
+      - ./server:/var/www/server
+    environment:
+      - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  flower:
+    image: mher/flower
+    container_name: flower-linkUp
+    ports:
+      - "${FLOWER_PORT}:${FLOWER_PORT}"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:${REDIS_PORT}/0
+      - FLOWER_PORT=$FLOWER_PORT
+    depends_on:
+      - redis
+      - celery
