@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
-from .utils import send_activation_email, send_password_reset_email
+from .tasks import send_activation_email, send_password_reset_email
 from .models import User
 
 
@@ -84,7 +84,7 @@ class UserRegisterForm(UserCreationForm):
         if commit:
             user.is_active = False
             user.save()
-            send_activation_email(user)
+            send_activation_email.delay(user.id)
 
         return user
 
@@ -101,7 +101,7 @@ class PasswordResetRequestForm(forms.Form):
         if self.is_valid():
             try:
                 user = User.objects.get(email=self.cleaned_data['email'])
-                send_password_reset_email(user)
+                send_password_reset_email.delay(user.id)
                 success = True
             except User.DoesNotExist:
                 success = True
