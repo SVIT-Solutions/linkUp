@@ -21,6 +21,7 @@ django-storages = "^1.14.2"
 pillow = "^10.2.0"
 celery = {extras = ["redis"], version = "^5.3.6"}
 flower = "^2.0.1"
+gunicorn = "^21.2.0"
 
 
 [build-system]

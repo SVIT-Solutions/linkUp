@@ -4,20 +4,25 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx-linkUp
+    restart: always
     ports:
-      - "80:80"
+      - "${NGINX_PORT}:80"
     volumes:
-      - ./config/nginx.conf:/etc/config/nginx.conf
-      - ./client/build:/var/www/html
-    links:
+      - ./server/:/var/www/server/
+      - ./client/:/var/www/client/
+      - ./config/nginx:/etc/nginx/conf.d
+    networks:
+      - linkUpNetwork
+    depends_on:
       - server
+      - client
 
   server:
     container_name: server-linkUp
     build: ./server
     ports:
       - "$SERVER_PORT:$SERVER_PORT"
-    command: bash -c "python manage.py runserver 0.0.0.0:$SERVER_PORT"
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:$SERVER_PORT --timeout 300
     working_dir: /var/www/server
     volumes:
       - ./server:/var/www/server
@@ -29,6 +34,10 @@ services:
       - database
       - redis
       - celery
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - linkUpNetwork
 
   database:
     image: mysql:8.0
@@ -38,8 +47,6 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-    ports:
-      - "$DATABASE_PORT:$DATABASE_PORT"
     volumes:
       - ./mysql_data:/var/lib/mysql
 
@@ -47,8 +54,7 @@ services:
     container_name: client-linkUp
     build: ./client
     working_dir: /var/www/client
-    ports:
-      - "$CLIENT_PORT:$CLIENT_PORT"
+    command: yarn build
     volumes:
       - ./client:/var/www/client
       - ./server:/var/www/server
@@ -86,3 +92,7 @@ services:
     depends_on:
       - redis
       - celery
+
+networks:
+  linkUpNetwork:
+    driver: bridge
