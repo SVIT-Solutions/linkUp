@@ -1,0 +1,88 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-linkUp
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx.conf:/etc/config/nginx.conf
+      - ./client/build:/var/www/html
+    links:
+      - server
+
+  server:
+    container_name: server-linkUp
+    build: ./server
+    ports:
+      - "$SERVER_PORT:$SERVER_PORT"
+    command: bash -c "python manage.py runserver 0.0.0.0:$SERVER_PORT"
+    working_dir: /var/www/server
+    volumes:
+      - ./server:/var/www/server
+    environment:
+      - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+      - celery
+
+  database:
+    image: mysql:8.0
+    container_name: ${DATABASE_HOST}-linkUp
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "$DATABASE_PORT:$DATABASE_PORT"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  client:
+    container_name: client-linkUp
+    build: ./client
+    working_dir: /var/www/client
+    ports:
+      - "$CLIENT_PORT:$CLIENT_PORT"
+    volumes:
+      - ./client:/var/www/client
+      - ./server:/var/www/server
+    environment:
+      - REACT_APP_GRAPHQL_ENDPOINT=${REACT_APP_GRAPHQL_ENDPOINT}
+
+  redis:
+    image: "redis:latest"
+    container_name: redis-linkUp
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+  celery:
+    build: ./server
+    container_name: celery-linkUp
+    command: bash -c "poetry run celery -A server worker -l info"
+    working_dir: /var/www/server
+    volumes:
+      - ./server:/var/www/server
+    environment:
+      - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  flower:
+    image: mher/flower
+    container_name: flower-linkUp
+    ports:
+      - "${FLOWER_PORT}:${FLOWER_PORT}"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:${REDIS_PORT}/0
+      - FLOWER_PORT=$FLOWER_PORT
+    depends_on:
+      - redis
+      - celery
