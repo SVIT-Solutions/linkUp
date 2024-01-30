@@ -204,8 +204,10 @@ AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
 
 
 # Celery
-CELERY_BROKER_URL = 'redis://redis:6379/0'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+REDIS_PORT = config('REDIS_PORT')
+
+CELERY_BROKER_URL = f'redis://redis:{REDIS_PORT}/0'
+CELERY_RESULT_BACKEND = f'redis://redis:{REDIS_PORT}/0'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'

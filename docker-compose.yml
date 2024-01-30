@@ -28,7 +28,7 @@ services:
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
-      - "$DATABASE_PORT:3306"
+      - "$DATABASE_PORT:$DATABASE_PORT"
     volumes:
       - ./mysql_data:/var/lib/mysql
 
@@ -48,7 +48,7 @@ services:
     image: "redis:latest"
     container_name: redis-linkUp
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:${REDIS_PORT}"
 
   celery:
     build: ./server
@@ -68,10 +68,10 @@ services:
     image: mher/flower
     container_name: flower-linkUp
     ports:
-      - "5555:5555"
+      - "${FLOWER_PORT}:${FLOWER_PORT}"
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - FLOWER_PORT=5555
+      - CELERY_BROKER_URL=redis://redis:${REDIS_PORT}/0
+      - FLOWER_PORT=$FLOWER_PORT
     depends_on:
       - redis
       - celery
