@@ -1,5 +1,4 @@
 from django.core.mail import send_mail
-from django.utils.crypto import get_random_string
 from django.template.loader import render_to_string
 from decouple import config
 from server.utils import generate_unique_token

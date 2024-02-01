@@ -11,8 +11,7 @@ services:
       - ./server/:/var/www/server/
       - ./client/:/var/www/client/
       - ./config/nginx:/etc/nginx/conf.d
-    networks:
-      - linkUpNetwork
+      # - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - server
       - client
@@ -36,8 +35,6 @@ services:
       - celery
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    networks:
-      - linkUpNetwork
 
   database:
     image: mysql:8.0
@@ -57,7 +54,6 @@ services:
     command: yarn build
     volumes:
       - ./client:/var/www/client
-      - ./server:/var/www/server
     environment:
       - REACT_APP_GRAPHQL_ENDPOINT=${REACT_APP_GRAPHQL_ENDPOINT}
 
@@ -92,7 +88,3 @@ services:
     depends_on:
       - redis
       - celery
-
-networks:
-  linkUpNetwork:
-    driver: bridge
